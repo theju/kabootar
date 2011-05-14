@@ -4,7 +4,7 @@ var path = require("path");
 var app = express.createServer(
     express.logger(),
     express.bodyParser(),
-    express.static(__dirname)
+    express.static(path.dirname(__dirname))
 );
 
 app.post("/beam/", function(req, res) {
