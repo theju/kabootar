@@ -1,0 +1,27 @@
+<!doctype>
+<html>
+  <head>
+    <script type="text/javascript">
+      var _page_load_start = (new Date()).getTime();
+    </script>
+    <title>Kabootar Client Test</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      (function(){
+        function sendKabootarBack() {
+          window._page_load_end = (new Date()).getTime();
+          var elem = document.createElement("script");
+          elem.setAttribute("type", "text/javascript");
+          elem.setAttribute("src",
+           (("https:" == document.location.protocol) ? "https://" : "http://") + 
+           "localhost:8000" + "/js/server.js");
+          document.body.appendChild(elem);
+        }
+        var originalLoad = window.onload;
+        window.onload = (typeof window.onload != "function") ?
+          sendKabootarBack : function() { originalLoad(); sendKabootarBack(); };
+       })();
+    </script>
+  </body>
+</html>
