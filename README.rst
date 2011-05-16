@@ -25,7 +25,6 @@ In the meantime, you can check out the ``tests`` directory for the usage::
 To Do
 ------
 
-* Expose the custom data points feature.
 * Develop a dashboard to summarize the data.
 * Add ability to separate the data sent from multiple sources.
 
