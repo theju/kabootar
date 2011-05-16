@@ -5,8 +5,8 @@ Kabootar
 Kabootar is currently a very simple analytics platform that homes back with 
 interesting data.
 
-As of now, it reports the page load time but can be used to send other custom 
-data points ala MixPanel.
+It not only reports the page load time but may also be used to send other custom
+data points ala MixPanel (using the ``recordData`` javascript function).
 
 Install
 --------
