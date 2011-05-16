@@ -1,6 +1,5 @@
-var host = "http://localhost:8000";
-
 function recordData(action, value) {
+    var host = "http://localhost:8000";
     var xhr = new XMLHttpRequest();
     xhr.open("POST", host + "/beam/", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -9,16 +8,5 @@ function recordData(action, value) {
 }
 
 (function() {
-    var dataList = [{"Page_Load_Start": _page_load_start}, 
-		    {"Page_Load_End": window._page_load_end}];
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", host + "/beam_load/", false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var strData = "";
-    for (var i = 0; i < dataList.length; i++) {
-	for (var j in dataList[i]) {
-	    strData += encodeURI((i > 0?"&":"") + 'action='+ j + '&value=' + dataList[i][j]);
-	}
-    }
-    xhr.send(strData);
+    recordData("Page_Load", window._page_load_end - _page_load_start);
 })();
