@@ -48,9 +48,9 @@ On the server, install riak, node.js and the following node dependencies::
    $ npm install express
    $ npm install riak-js
 
-Run the test server (under the ``tests`` directory)::
+Run the server::
 
-   $ node test_server.js
+   $ node server.js
 
 Open the HTML page with the code snippets pasted above and check the data getting
 loaded into the riak-database under the "analytics" bucket.
