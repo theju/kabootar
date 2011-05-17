@@ -1,12 +1,21 @@
 var express = require("express");
 var path = require("path");
 var riak = require("riak-js").getClient();
+var mustache = require("mustache");
 
 var app = express.createServer(
     express.logger(),
     express.bodyParser(),
-    express.static(path.dirname(__dirname))
+    express.static(__dirname)
 );
+
+var mu = {
+    compile: function(viewStr, options) {
+	return function() {
+	    return mustache.to_html(viewStr, options);
+	}
+    }
+};
 
 app.post("/beam/", function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -25,6 +34,12 @@ app.post("/beam/", function(req, res) {
 app.options("/beam/", function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.send();
+});
+
+app.get("/dashboard/", function(req, res) { 
+    app.register('html', mu);
+    var dashboardTitle = "Kabootar Dashboard : Homing back with interesting data";
+    res.render("dashboard.html", {title: dashboardTitle});
 });
 
 app.listen(8000);
