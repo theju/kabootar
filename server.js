@@ -24,7 +24,7 @@ app.post("/beam/", function(req, res) {
     var randomSuffix = Math.floor(Math.random() * 999999 + 1)
     riak.save("analytics", action + "_" + value + "_" + (new Date()).getTime() + "_" + randomSuffix, 
 	      function() { 
-		  var o = new Object;
+		  var o = new Object();
 		  o[action] = value;
 		  return o;
 	      }());
@@ -38,7 +38,7 @@ app.options("/beam/", function(req, res) {
 
 app.get("/dashboard/", function(req, res) { 
     app.register('html', mu);
-    var dashboardTitle = "Kabootar Dashboard : Homing back with interesting data";
+    var dashboardTitle = "Kabootar Dashboard : Homing back interesting data";
     res.render("dashboard.html", {title: dashboardTitle});
 });
 
