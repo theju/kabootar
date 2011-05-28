@@ -52,8 +52,8 @@ Run the server::
 
    $ node server.js
 
-Open the HTML page with the code snippets pasted above and check the data getting
-loaded into the riak-database under the "analytics" bucket.
+Open the HTML page with the code snippets pasted above and check the dashboard
+accessible under ``/dashboard/`` to verify the data being loaded.
 
 To Do
 ------
