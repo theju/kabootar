@@ -62,11 +62,11 @@ To Do
 ------
 
 * Action Detail Page
-  ** Order the top 100 results by time
-  ** Add realtime refresh support
-  ** Add graph
+  + Order the top 100 results by time
+  + Add realtime refresh support
+  + Add graph
 * Dashboard Page
-  ** Add graph
+  + Add graph
 * Add ability to separate the data sent from multiple sources.
 
 .. _`Node.js`: http://nodejs.org/
