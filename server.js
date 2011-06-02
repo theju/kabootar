@@ -47,15 +47,31 @@ app.get("/dashboard/", function(req, res) {
 app.get("/dashboard/data/", function(req, res) { 
     var defaultDate = formatDate(new Date());
     var reqDate = req.query.hasOwnProperty("date")?req.query.date:defaultDate;
-    riak.add("analytics_" + reqDate).map(mapFn).reduce(reduceFn).run(function(err, result) { 
-	res.send(result);
-    });
+    var action = req.query.hasOwnProperty("action")?req.query.action:false;
+    if (action) {
+	riak.add("analytics_" + reqDate).map(mapFn, {"action": action}).run(function(err, result) { 
+	    res.send(result);
+	});
+    } else {
+	riak.add("analytics_" + reqDate).map(mapFn).reduce(reduceFn).run(function(err, result) { 
+	    res.send(result);
+	});
+    }
 });
 
-function mapFn(v) {
+function mapFn(v, keyData, arg) {
     var jsonData = JSON.parse(v.values[0].data);
     var mapObj = new Object();
-    mapObj[_.keys(jsonData)[0]] = 1;
+    var action = arg.action;
+    if (action) {
+	if (action in jsonData) {
+	    mapObj[action] = jsonData[action];
+	} else {
+	    return [];
+	}
+    } else {
+	mapObj[_.keys(jsonData)[0]] = 1;
+    }
     return [mapObj];
 }
 
