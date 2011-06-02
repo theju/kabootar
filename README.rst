@@ -52,13 +52,21 @@ Run the server::
 
    $ node server.js
 
+Add ``underscore.js`` to the ``js_source_dir`` defined in ``apps.config`` of riak
+to all nodes.
+
 Open the HTML page with the code snippets pasted above and check the dashboard
 accessible under ``/dashboard/`` to verify the data being loaded.
 
 To Do
 ------
 
-* Develop a dashboard to summarize the data.
+* Action Detail Page
+** Order the top 100 results by time
+** Add realtime refresh support
+** Add graph
+* Dashboard Page
+** Add graph
 * Add ability to separate the data sent from multiple sources.
 
 .. _`Node.js`: http://nodejs.org/
